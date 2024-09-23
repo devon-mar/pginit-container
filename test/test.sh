@@ -10,7 +10,14 @@ user1 db1 db2
 "
 
 function pginit {
-  docker run -e "PGHOST=$PGHOST" -e "PGUSER=$PGUSER" -e "PGPASSWORD=$PGPASSWORD" -e "PGINIT_CONFIG=$PGINIT_CONFIG" --rm pginit
+  docker run \
+    --net=host \
+    -e "PGHOST=$PGHOST" \
+    -e "PGUSER=$PGUSER" \
+    -e "PGPASSWORD=$PGPASSWORD" \
+    -e "PGINIT_CONFIG=$PGINIT_CONFIG" \
+    --rm \
+    pginit
 }
 
 pginit | diff "$TEST_DIR/expected0" -
