@@ -9,5 +9,9 @@ user0 db0
 user1 db1 db2
 "
 
-docker run -e "PGINIT_CONFIG=$PGINIT_CONFIG" --rm pginit | diff "$TEST_DIR/expected0" -
-docker run -e "PGINIT_CONFIG=$PGINIT_CONFIG" --rm pginit | diff "$TEST_DIR/expected1" -
+function pginit {
+  docker run -e "PGHOST=$PGHOST" -e "PGUSER=$PGUSER" -e "PGPASSWORD=$PGPASSWORD" -e "PGINIT_CONFIG=$PGINIT_CONFIG" --rm pginit
+}
+
+pginit | diff "$TEST_DIR/expected0" -
+pginit | diff "$TEST_DIR/expected1" -
