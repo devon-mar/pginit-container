@@ -1,0 +1,7 @@
+Processing line: user0 db0
+  Creating user user0.
+  Creating database db0 with owner user0.
+Processing line: user1 db1 db2
+  Creating user user1.
+  Creating database db1 with owner user1.
+  Creating database db2 with owner user1.

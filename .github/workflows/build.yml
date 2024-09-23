@@ -12,6 +12,14 @@ jobs:
     permissions:
       packages: write
 
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          PGPASSWORD: postgres
+        ports:
+          - 5432:5432
+
     steps:
       - uses: actions/checkout@v4
 
@@ -30,8 +38,22 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          load: true
+          tags: pginit
+
+      - name: Run tests
+        run: ./test/test.sh
+        env:
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          PGHOST: 127.0.0.1
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          push: true

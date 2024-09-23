@@ -1,0 +1,7 @@
+Processing line: user0 db0
+  User user0 exists.
+  Database db0 exists.
+Processing line: user1 db1 db2
+  User user1 exists.
+  Database db1 exists.
+  Database db2 exists.
