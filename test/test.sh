@@ -20,5 +20,9 @@ function pginit {
     pginit
 }
 
+echo "First run:\n"
+
 pginit | diff "$TEST_DIR/expected0" -
+
+echo "Second run:\n"
 pginit | diff "$TEST_DIR/expected1" -

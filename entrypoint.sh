@@ -8,7 +8,7 @@ function create_database {
 
   # https://stackoverflow.com/questions/14549270/check-if-database-exists-in-postgresql-using-shell
   if [ "$( psql -XtAc "SELECT 1 FROM pg_database WHERE datname='$dbname'" )" = '1' ]; then
-    echo "  Database $dbname exists"
+    echo "  Database $dbname exists."
   else
     echo "  Creating database $dbname with owner $dbuser."
     if ! createdb --owner "$dbuser" "$dbname"; then
